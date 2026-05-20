@@ -1,15 +1,53 @@
 # Stitch Design Skills
 
-A collection of agent skills and plugins for [Google Stitch](https://stitch.withgoogle.com), following the [Agent Skills](https://agentskills.io) open standard. Compatible with coding agents such as Antigravity, Gemini CLI, Claude Code, and Cursor.
+A collection of agent skills and plugins for [Google Stitch](https://stitch.withgoogle.com), following the [Agent Skills](https://agentskills.io) open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, and Cursor.
 
 ## Quick Start
 
 ### 1. Install Plugins (Recommended)
 The fastest way to set up the full Stitch plugin suite globally.
 
+#### Codex
+
+In Codex, add this repository as a plugin marketplace:
+
+| Field | Value |
+|---|---|
+| Source | `https://github.com/google-labs-code/stitch-skills` |
+| Git ref | `main` |
+| Sparse paths | Leave empty, or use the paths below for a smaller checkout |
+
+Optional sparse paths:
+
+```text
+.agents/plugins
+plugins/stitch-design
+plugins/stitch-build
+plugins/stitch-utilities
+```
+
+Do not use `plugins/codex`; that path does not exist in this repository.
+
+The equivalent Codex CLI command is:
+
+```bash
+codex plugin marketplace add google-labs-code/stitch-skills --ref main \
+  --sparse .agents/plugins \
+  --sparse plugins/stitch-design \
+  --sparse plugins/stitch-build \
+  --sparse plugins/stitch-utilities
+```
+
+After adding the marketplace, install the plugins you need from the `Stitch Skills` marketplace:
+
+- `stitch-design`
+- `stitch-build`
+- `stitch-utilities`
+
+#### Claude Code
+
 ```bash
 npx plugins add google-labs-code/stitch-skills --scope project --target claude-code
-
 ```
 
 ### 2. Install Skills Selectively
