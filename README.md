@@ -9,26 +9,10 @@ The fastest way to set up the full Stitch plugin suite globally.
 
 #### Codex
 
-In Codex, add this repository as a plugin marketplace:
+Add the Stitch Skills marketplace, then install the plugins you need.
 
-| Field | Value |
-|---|---|
-| Source | `https://github.com/google-labs-code/stitch-skills` |
-| Git ref | `main` |
-| Sparse paths | Leave empty, or use the paths below for a smaller checkout |
-
-Optional sparse paths:
-
-```text
-.agents/plugins
-plugins/stitch-design
-plugins/stitch-build
-plugins/stitch-utilities
-```
-
-Do not use `plugins/codex`; that path does not exist in this repository.
-
-The equivalent Codex CLI command is:
+<details open>
+<summary><strong>Via CLI</strong> (recommended)</summary>
 
 ```bash
 codex plugin marketplace add google-labs-code/stitch-skills --ref main \
@@ -38,16 +22,41 @@ codex plugin marketplace add google-labs-code/stitch-skills --ref main \
   --sparse plugins/stitch-utilities
 ```
 
-After adding the marketplace, install the plugins you need from the `Stitch Skills` marketplace:
+> [!TIP]
+> The `--sparse` flags are optional — they limit the checkout to only the
+> listed paths for a faster clone. Omit them to pull the entire repository.
 
-- `stitch-design`
-- `stitch-build`
-- `stitch-utilities`
+</details>
 
-#### Claude Code
+<details>
+<summary><strong>Via the Codex UI</strong></summary>
+
+Navigate to **Settings → Plugin Marketplaces → Add** and fill in:
+
+| Field | Value |
+|---|---|
+| **Source** | `https://github.com/google-labs-code/stitch-skills` |
+| **Git ref** | `main` |
+| **Sparse paths** | *(optional)* `.agents/plugins`, `plugins/stitch-design`, `plugins/stitch-build`, `plugins/stitch-utilities` |
+
+</details>
+
+Once the marketplace is registered, install any combination of:
+
+- **`stitch-design`** — design-focused skills
+- **`stitch-build`** — build and component skills
+- **`stitch-utilities`** — utility and helper skills
+
+#### Claude Code & Cursor
 
 ```bash
+# Claude Code — installs into the current project
 npx plugins add google-labs-code/stitch-skills --scope project --target claude-code
+```
+
+```bash
+# Cursor — installs into the current workspace
+npx plugins add google-labs-code/stitch-skills --scope workspace --target cursor
 ```
 
 ### 2. Install Skills Selectively
@@ -97,6 +106,7 @@ Code generation, framework integration, and asset compilation from Stitch design
 |---|---|---|
 | [react-components](plugins/stitch-build/skills/react-components/) | Convert Stitch screens to React component systems with automated validation and design token consistency | *"Convert all screens in Stitch project `projects/123` to React components."* |
 | [remotion](plugins/stitch-build/skills/remotion/) | Generate walkthrough videos from Stitch projects using Remotion with smooth transitions and zooming | *"Generate a walkthrough video of the Stitch project `projects/456`."* |
+| [react-native](plugins/stitch-build/skills/react-native/) | Convert Stitch HTML designs to production-ready React Native components with StyleSheet and platform-specific code | *"Convert the Stitch design to React Native components with proper theme and navigation."* |
 | [shadcn-ui](plugins/stitch-build/skills/shadcn-ui/) | Expert guidance for integrating and building applications with shadcn/ui components | *"Set up shadcn/ui and build a data table with sorting and filtering."* |
 
 ---
@@ -129,6 +139,7 @@ plugins/
 │   ├── plugin.json
 │   └── skills/
 │       ├── react-components/
+│       ├── react-native/
 │       ├── remotion/
 │       └── shadcn-ui/
 └── stitch-utilities/       — Design utilities & assistants plugin
